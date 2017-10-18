@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92F508161F96D30300177639 /* Passenger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92F508141F96D30300177639 /* Passenger.cpp */; };
 		EF312B911F942E8200A800D3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EF312B901F942E8200A800D3 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		92F508121F96D03B00177639 /* LinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LinkedList.h; sourceTree = "<group>"; };
+		92F508141F96D30300177639 /* Passenger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Passenger.cpp; sourceTree = "<group>"; };
+		92F508151F96D30300177639 /* Passenger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Passenger.hpp; sourceTree = "<group>"; };
+		92F508171F96D5D600177639 /* OrderedLinkedList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrderedLinkedList.h; sourceTree = "<group>"; };
 		EF312B8D1F942E8200A800D3 /* airlinedb_Xcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = airlinedb_Xcode; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF312B901F942E8200A800D3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +63,10 @@
 			isa = PBXGroup;
 			children = (
 				EF312B901F942E8200A800D3 /* main.cpp */,
+				92F508141F96D30300177639 /* Passenger.cpp */,
+				92F508151F96D30300177639 /* Passenger.hpp */,
+				92F508121F96D03B00177639 /* LinkedList.h */,
+				92F508171F96D5D600177639 /* OrderedLinkedList.h */,
 			);
 			path = airlinedb_Xcode;
 			sourceTree = "<group>";
@@ -119,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F508161F96D30300177639 /* Passenger.cpp in Sources */,
 				EF312B911F942E8200A800D3 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
