@@ -15,9 +15,10 @@ using namespace std;
 
 //**************************************************************
 //                                          Make Nodes
-template <class T>
+//template <class T>
 struct node{
-    T data;
+//    T data;
+    Passenger data;
     node* next;
     node* prev;
 };
@@ -25,83 +26,83 @@ struct node{
 
 //**************************************************************
 //                          Make DOUBLY Linked List Parent Class
-template <class T>
+//template <class T>
 class LinkedList{
 private:
 //    LinkedList(const LinkedList&)=delete; //copy constructor
 protected:
     int count;
-    node<T> *head, *last;
+    node *head, *last;
 public:
     LinkedList();
-    LinkedList<T>& operator=(LinkedList<T>&);
+    LinkedList& operator=(LinkedList&);
     bool isEmpty();
     int length();
-    T getFront();
-    T getBack();
-    virtual void insertNode(T&);
+    Passenger getFront();
+    Passenger getBack();
+    virtual void insertNode(Passenger&);
 //    virtual void deleteNode(T&);
     virtual void searchList(string _first, string _last, int FLIGHT_NO);
     void destroyList();
-    template <class U>
-    friend ostream& operator<<(ostream& os, LinkedList<U>& list);
+//    template <class U>
+    friend ostream& operator<<(ostream& os, LinkedList& list);
     ~LinkedList();
 };
 
 //**************************************************************
 //                                          define = operator
-template <class T>
-LinkedList<T>& LinkedList<T>::operator=(LinkedList<T>& list){
-    if(this!= &list){
-        copylist(list);
-    }
-    return *this;
-}
+//template <class T>
+//LinkedList& LinkedList::operator=(LinkedList& list){
+//    if(this!= &list){
+//        copylist(list);
+//    }
+//    return *this;
+//}
 
 //**************************************************************
 //                                          define CONSTRUCTOR
-template <class T>
-LinkedList<T>::LinkedList(){
+//template <class T>
+LinkedList::LinkedList(){
     head = last = NULL;
     count = 0;
 }
 
 //**************************************************************
 //                                          define isEmpty()
-template <class T>
-bool LinkedList<T>::isEmpty(){
+//template <class T>
+bool LinkedList::isEmpty(){
     return head==NULL;
 }
 
 //**************************************************************
 //                                          define length()
-template <class T>
-int LinkedList<T>::length(){
+//template <class T>
+int LinkedList::length(){
     return count;
 }
 
 //**************************************************************
 //                                          define getFront()
-template <class T>
-T LinkedList<T>::getFront(){
+//template <class T>
+Passenger LinkedList::getFront(){
     return head->data;
 }
 
 //**************************************************************
 //                                          define getBack()
-template <class T>
-T LinkedList<T>::getBack(){
+//template <class T>
+Passenger LinkedList::getBack(){
     return last->data;
 }
 
 //**************************************************************
 //                                          define insertNode()
 //                              simple insert only adds to front
-template <class T>
-void LinkedList<T>::insertNode(T& item){
+//template <class T>
+void LinkedList::insertNode(Passenger& item){
     cout << "inserting" << endl;
     cout << "inserting: " << item.getFirstName() << endl;
-    node<T> *temp = new node<T>;
+    node *temp = new node;
     if(count == 0){
         cout << "list was empty" << endl;
         head->data = item;                     // & or no &
@@ -165,9 +166,9 @@ void LinkedList<T>::insertNode(T& item){
 //**************************************************************
 //                                          define searchList()
 //                                              simple search
-template<class T>
-void LinkedList<T>::searchList(string _first, string _last, int FLIGHT_NO){
-    node<T>* lookHere;
+//template<class T>
+void LinkedList::searchList(string _first, string _last, int FLIGHT_NO){
+    node* lookHere;
     lookHere = head;
     cout << "about to start while from within search" << endl << endl;
     cout << "searching for: " << lookHere->data.getFirstName() << endl;
@@ -191,20 +192,26 @@ void LinkedList<T>::searchList(string _first, string _last, int FLIGHT_NO){
 
 //**************************************************************
 //                                          define << operator
-template <class T>
-ostream& operator<<(ostream& os, LinkedList<T>& list){
-    node<T> *p = list.head;
+//template <class T>
+ostream& operator<<(ostream& os, LinkedList& list){
+    node *p = list.head;
     while(p!= NULL){
-        os<<p->data<<" "<<endl;
+        os << p->data.getFirstName() <<" "<<endl;
         p = p->next;
     }
+    
+//    for (int i = 0; i < list.length(); i++){
+//        os << p->data.getFirstName() <<" "<<endl;
+//        p = p->next;
+//    }
+     return os;
 }
 
 //**************************************************************
 //                                          define destroyList()
-template <class T>
-void LinkedList<T>::destroyList(){
-    node<T> *p;
+//template <class T>
+void LinkedList::destroyList(){
+    node *p;
     while(head != NULL){
         p = head;
         head = head->next;
@@ -216,8 +223,8 @@ void LinkedList<T>::destroyList(){
 
 //**************************************************************
 //                                          define Destructor
-template <class T>
-LinkedList<T>::~LinkedList(){
+//template <class T>
+LinkedList::~LinkedList(){
     destroyList();
 }
 

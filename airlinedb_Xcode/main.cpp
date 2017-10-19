@@ -14,7 +14,7 @@ using namespace std;
 int main() {
     int FLIGHT_1 = 100;
     cout << "made flight" << endl;
-    LinkedList<Passenger> LIST_1 = LinkedList<Passenger>();
+    LinkedList LIST_1 = LinkedList();
     cout << "made list" << endl;
     Passenger P_1 = Passenger("steve", "smith", "5012 245th ave ne Redmond, WA 98052", "425-885-5535");
     cout << "made passenger" << endl;
