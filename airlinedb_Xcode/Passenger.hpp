@@ -22,12 +22,16 @@ class Passenger{
     string mLastName;
     string mAddress;
     string mPhone;
+private:
+//    Passenger(const Passenger&) = delete;     //copy constructor
     
 public:
+    Passenger& operator=(Passenger&);
     string getFirstName();
     string getLastName();
     string getAddress();
     string getPhone();
+    Passenger();                            // defult constructor
     Passenger(string, string, string, string);
     template <class T>
     friend ostream& operator<<(ostream& os, Passenger& person);

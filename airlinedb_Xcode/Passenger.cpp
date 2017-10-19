@@ -21,6 +21,15 @@ Passenger::Passenger(string _fName, string _lName, string _addr, string _phone){
     mPhone = _phone;
 }
 
+//**************************************************************
+//                                          Define DEFAULT CONSTRUCTOR
+Passenger::Passenger(){
+    mFirstName = "default";
+    mLastName = "default";
+    mAddress = "default";
+    mPhone = "default";
+}
+
 
 //**************************************************************
 //                                          Define GETTERS
@@ -38,6 +47,16 @@ string Passenger::getPhone(){
 
 string Passenger::getAddress(){
     return mAddress;
+}
+
+//**************************************************************
+//                                          = operator COPY
+Passenger& Passenger::operator=(Passenger& item){
+//    if(this!= &item){
+//        copy(item);
+//    }
+//    return *this;
+    return item;
 }
 
 
