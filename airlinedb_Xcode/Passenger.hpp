@@ -18,13 +18,13 @@ using namespace std;
 //**************************************************************
 //                                          Make Passenger Class
 class Passenger{
+
+private:
+//    Passenger(const Passenger&) = delete;     //copy constructor
     string mFirstName;
     string mLastName;
     string mAddress;
     string mPhone;
-private:
-//    Passenger(const Passenger&) = delete;     //copy constructor
-    
 public:
     Passenger& operator=(Passenger&);
     string getFirstName();

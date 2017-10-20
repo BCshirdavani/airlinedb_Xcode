@@ -99,33 +99,22 @@ Passenger LinkedList::getBack(){
 //                                          define insertNode()
 //                              simple insert only adds to front
 //template <class T>
-void LinkedList::insertNode(Passenger& item){
-    cout << "inserting" << endl;
-    cout << "inserting: " << item.getFirstName() << endl;
+void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " << item.getFirstName() << endl;
     node *temp = new node;
-    if(count == 0){
-        cout << "list was empty" << endl;
-        head->data = item;                     // & or no &
+    if(count == 0){                                 cout << "\t\tlist was empty, inserting..." << endl;
+        head = temp;
+        temp->data = item;                     // & or no &
         last = head;
-//        cout << "head has: " << head->data.getFirstName() << endl;
-//        head->prev = NULL;
-//        head->next = NULL;
-//        last->prev = NULL;
-//        last->next = NULL;
     }
-    else{
-        cout << "list was not empty" << endl;
+    else{                                           cout << "\t\tlist was not empty, inserting..." << endl;
         temp->data = item;
-        temp->next = head;
-        head->prev = temp;
+        temp->next = last;
+        last->prev = temp;
         head = temp;
     }
-//    temp->data = item;
-//    temp->next = head;
-//    head->prev = temp;
-//    head = temp;
     count++;
-//    if(last==NULL) last = temp;
+    if(last==NULL) last = temp;
+    delete temp;                                // free memory? Or cause problems?
 }
 
 //**************************************************************
@@ -169,19 +158,32 @@ void LinkedList::insertNode(Passenger& item){
 //template<class T>
 void LinkedList::searchList(string _first, string _last, int FLIGHT_NO){
     node* lookHere;
-    lookHere = head;
-    cout << "about to start while from within search" << endl << endl;
-    cout << "searching for: " << lookHere->data.getFirstName() << endl;
-    while( ! ((lookHere->data.getFirstName() == _first) && (lookHere->data.getLastName() == _first) && (lookHere->next != NULL))){
-        if((lookHere->data.getFirstName() == _first) && (lookHere->data.getLastName() == _first)){
-            cout << "found it" << endl;
+    lookHere = this->head;                                              // this->head ? or head ?
+    cout << "\t\tabout to start while from within search" << endl << endl;
+    cout << "\t\tcheck if head is NULL" << endl;
+    if (head == NULL){cout << "\t\thead is NULL " << endl;}
+    cout << "\t\thead contains: " << head << endl;
+    cout << "\t\thead->data.getFirstName() contains: " << this->head << " " << head->data.getFirstName() << " " << head->data.getLastName() << endl;
+    
+    cout << "\t\thead contains: " << head->data.getFirstName() << endl;
+    cout << "\t\tsearching for: " << _first << " " << _last << endl;         // ERROR HERE *********************************************
+    
+    while( ! ( (lookHere->data.getFirstName() == _first) && (lookHere->data.getLastName() == _last) /*&& (lookHere->next != NULL)*/ ) )
+    {
+        cout << "\t\tcannot find first/last names, or next = null" << endl;
+        if((lookHere->data.getFirstName() == _first) && (lookHere->data.getLastName() == _last))
+        {
+            cout << "\t\tfound it" << endl;
         }
+        cout << "\t\tmoving next look here pointer" << endl;
         lookHere = lookHere->next;
     }
-    if (lookHere->next == NULL){
-        cout << "could not find that person." << endl;
+    if (lookHere->next == NULL)
+    {
+        cout << "\t\tcould not find that person." << endl;
     }
-    else{
+    else
+    {
         cout << "Flight Number: " << FLIGHT_NO << endl;
         cout << "First Name: " << lookHere->data.getFirstName() << endl;
         cout << "Last Name: " << lookHere->data.getLastName() << endl;
