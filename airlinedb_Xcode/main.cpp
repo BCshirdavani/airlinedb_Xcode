@@ -25,7 +25,7 @@ int main() {
     LIST_1->insertNode(*P_1);                                   cout << "inserted passenger to list" << endl;
 //    LIST_1->insertNode(P_2);
     cout << "checking head from main: " << "\t\tisEmpty() = " << LIST_1->isEmpty() << endl;
-    cout << "getFront().getFirstName(): \t" << LIST_1->getFront().getFirstName() << endl;
+    cout << "getFront().getFirstName(): \t" << (LIST_1->getFront()).getFirstName() << endl;
 
     cout << "about to search" << endl;
     

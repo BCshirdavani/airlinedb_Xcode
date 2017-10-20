@@ -38,7 +38,8 @@ public:
     LinkedList& operator=(LinkedList&);
     bool isEmpty();
     int length();
-    Passenger getFront();
+    Passenger getFront();                                                 // commented out on 2017-10-19
+//    node* getFront();
     Passenger getBack();
     virtual void insertNode(Passenger&);
 //    virtual void deleteNode(T&);
@@ -85,8 +86,12 @@ int LinkedList::length(){
 //                                          define getFront()
 //template <class T>
 Passenger LinkedList::getFront(){
-    return head->data;
+    return head->data;                                          // commented out data
 }
+////template <class T>
+//node* LinkedList::getFront(){
+//    return head/*->data*/;                                          // commented out data
+//}
 
 //**************************************************************
 //                                          define getBack()
@@ -102,8 +107,12 @@ Passenger LinkedList::getBack(){
 void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " << item.getFirstName() << endl;
     node *temp = new node;
     if(count == 0){                                 cout << "\t\tlist was empty, inserting..." << endl;
+//        temp->data = item;                     // & or no &
+        temp->data.setFirstName( item.getFirstName() );
+        temp->data.setLastName( item.getLastName() );
+        temp->data.setAddress( item.getAddress() );
+        temp->data.setPhone( item.getPhone() );
         head = temp;
-        temp->data = item;                     // & or no &
         last = head;
     }
     else{                                           cout << "\t\tlist was not empty, inserting..." << endl;
@@ -114,7 +123,7 @@ void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " <<
     }
     count++;
     if(last==NULL) last = temp;
-    delete temp;                                // free memory? Or cause problems?
+//    delete temp;                                // free memory? Or cause problems?
 }
 
 //**************************************************************

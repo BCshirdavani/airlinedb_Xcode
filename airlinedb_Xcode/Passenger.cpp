@@ -50,6 +50,21 @@ string Passenger::getAddress(){
 }
 
 //**************************************************************
+//                                          Define SETTERS
+void Passenger::setFirstName(string _name){
+    mFirstName = _name;
+}
+void Passenger::setLastName(string _last){
+    mLastName = _last;
+}
+void Passenger::setAddress(string _address){
+    mAddress = _address;
+}
+void Passenger::setPhone(string _phone){
+    mPhone = _phone;
+}
+
+//**************************************************************
 //                                          = operator COPY
 Passenger& Passenger::operator=(Passenger& item){
 //    if(this!= &item){

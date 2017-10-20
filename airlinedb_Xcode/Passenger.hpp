@@ -31,6 +31,10 @@ public:
     string getLastName();
     string getAddress();
     string getPhone();
+    void setFirstName(string);
+    void setLastName(string);
+    void setAddress(string);
+    void setPhone(string);
     Passenger();                            // defult constructor
     Passenger(string, string, string, string);
     template <class T>
