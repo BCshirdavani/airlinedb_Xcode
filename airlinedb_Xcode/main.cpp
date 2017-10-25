@@ -26,6 +26,8 @@ int main() {
 //    LIST_1->insertNode(P_2);
     cout << "checking head from main: " << "\t\tisEmpty() = " << LIST_1->isEmpty() << endl;
     cout << "getFront().getFirstName(): \t" << (LIST_1->getFront()).getFirstName() << endl;
+    
+    cout << "getFront2().data.getFirstName(): \t" << (LIST_1->getFront2()).data.getFirstName() << endl;
 
     cout << "about to search" << endl;
     

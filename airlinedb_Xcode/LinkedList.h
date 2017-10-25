@@ -39,7 +39,7 @@ public:
     bool isEmpty();
     int length();
     Passenger getFront();                                                 // commented out on 2017-10-19
-//    node* getFront();
+    node getFront2();
     Passenger getBack();
     virtual void insertNode(Passenger&);
 //    virtual void deleteNode(T&);
@@ -92,6 +92,13 @@ Passenger LinkedList::getFront(){
 //node* LinkedList::getFront(){
 //    return head/*->data*/;                                          // commented out data
 //}
+
+//**************************************************************
+//                                          define getFront2()  NODE
+//template <class T>
+node LinkedList::getFront2(){
+    return *head;                                          // commented out data
+}
 
 //**************************************************************
 //                                          define getBack()
