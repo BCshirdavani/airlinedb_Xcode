@@ -37,12 +37,13 @@ public:
     LinkedList();
     LinkedList& operator=(LinkedList&);
     bool isEmpty();
+    bool sameNames(Passenger&, Passenger&);
     int length();
     Passenger getFront();                                                 // commented out on 2017-10-19
     node getFront2();
     Passenger getBack();
     virtual void insertNode(Passenger&);
-//    virtual void deleteNode(T&);
+//    virtual void deleteNode(string, string);
     virtual void searchList(string _first, string _last, int FLIGHT_NO);
     void destroyList();
 //    template <class U>
@@ -59,6 +60,17 @@ public:
 //    }
 //    return *this;
 //}
+
+//**************************************************************
+//                                          define saneAs()
+bool LinkedList::sameNames(Passenger& itemA, Passenger& itemB){
+    if( ( itemA.getFirstName() == itemB.getFirstName() ) && ( itemA.getLastName() == itemB.getLastName() ) )
+    {
+        return true;
+    }
+    else
+        return false;
+}
 
 //**************************************************************
 //                                          define CONSTRUCTOR
@@ -113,6 +125,7 @@ Passenger LinkedList::getBack(){
 //template <class T>
 void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " << item.getFirstName() << endl;
     node *temp = new node;
+    node *oldHead = new node;
     if(count == 0){                                 cout << "\t\tlist was empty, inserting..." << endl;
 //        temp->data = item;                     // & or no &
         temp->data.setFirstName( item.getFirstName() );
@@ -123,10 +136,17 @@ void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " <<
         last = head;
     }
     else{                                           cout << "\t\tlist was not empty, inserting..." << endl;
-        temp->data = item;
+//        temp->data = item;
+        oldHead = head;                 // NEW ****************
+        temp->data.setFirstName( item.getFirstName() );
+        temp->data.setLastName( item.getLastName() );
+        temp->data.setAddress( item.getAddress() );
+        temp->data.setPhone( item.getPhone() );
         temp->next = last;
-        last->prev = temp;
+        oldHead->prev = temp;
         head = temp;
+        temp->next = oldHead;   // NEW ****************
+//        head->next = last;   
     }
     count++;
     if(last==NULL) last = temp;
@@ -137,11 +157,11 @@ void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " <<
 //                                          define deleteNode()
 //                  simple delete requires full node as parameter
 //template <class T>
-//void LinkedList<T>::deleteNode(T& item){
+//void LinkedList::deleteNode(string _first, string _last){
 //    if(head == NULL)
 //        cout << "list was already empty";
 //    else{
-//        if(head->data == item){
+//        if(/*head->data == item*/  ){
 //            node<T>* p = head;
 //            head = head->next;
 //            head->prev = NULL;              // added for double link
@@ -151,8 +171,8 @@ void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " <<
 //                last = NULL;
 //            }
 //        }else{
-//            node<T>* p = head;
-//            node<T>* q = p->next;
+//            node* p = head;
+//            node* q = p->next;
 //            while(q!=NULL && q->data != item){
 //                p = q;
 //                q = q->next;
@@ -175,37 +195,53 @@ void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " <<
 void LinkedList::searchList(string _first, string _last, int FLIGHT_NO){
     node* lookHere;
     lookHere = this->head;                                              // this->head ? or head ?
-    cout << "\t\tabout to start while from within search" << endl << endl;
-    cout << "\t\tcheck if head is NULL" << endl;
+            cout << "\t\tabout to start while from within search" << endl << endl;
+            cout << "\t\tcheck if head is NULL" << endl;
     if (head == NULL){cout << "\t\thead is NULL " << endl;}
-    cout << "\t\thead contains: " << head << endl;
-    cout << "\t\thead->data.getFirstName() contains: " << this->head << " " << head->data.getFirstName() << " " << head->data.getLastName() << endl;
     
-    cout << "\t\thead contains: " << head->data.getFirstName() << endl;
-    cout << "\t\tsearching for: " << _first << " " << _last << endl;         // ERROR HERE *********************************************
+            cout << "\t\thead contains: " << head << endl;
+            cout << "\t\thead->data.getFirstName() contains: " << this->head << " " << head->data.getFirstName() << " " << head->data.getLastName() << endl;
     
-    while( ! ( (lookHere->data.getFirstName() == _first) && (lookHere->data.getLastName() == _last) /*&& (lookHere->next != NULL)*/ ) )
+            cout << "\t\thead contains: " << head->data.getFirstName() << endl;
+            cout << "\t\tsearching for: " << _first << " " << _last << endl;
+    while( ( !(lookHere->data.getFirstName() == _first) || !(lookHere->data.getLastName() == _last) ) )
     {
-        cout << "\t\tcannot find first/last names, or next = null" << endl;
+                cout << "\t\t\tnot yet, still in while search loop..." << endl;
+                cout << "\t\t\thead->data.getFirstName() contains: " << this->head << " " << head->data.getFirstName() << endl;
+                cout << "\t\tmoving next look here pointer" << endl;
+        lookHere = lookHere->next;                      // FAILURE TO MOVE NEXT. Maybe an INSERT problem **************
         if((lookHere->data.getFirstName() == _first) && (lookHere->data.getLastName() == _last))
         {
-            cout << "\t\tfound it" << endl;
+                    cout << "\t\tfound it" << endl;
+            break;
         }
-        cout << "\t\tmoving next look here pointer" << endl;
-        lookHere = lookHere->next;
+//        else{
+//                    cout << "\t\tmoving next look here pointer" << endl;
+//            lookHere = lookHere->next;                      // FAILURE TO MOVE NEXT. Maybe an INSERT problem **************
+//        }
+
     }
-    if (lookHere->next == NULL)
+    if((lookHere->data.getFirstName() == _first) && (lookHere->data.getLastName() == _last))
     {
-        cout << "\t\tcould not find that person." << endl;
-    }
-    else
-    {
+        cout << "\t\tfound it" << endl;
         cout << "Flight Number: " << FLIGHT_NO << endl;
         cout << "First Name: " << lookHere->data.getFirstName() << endl;
         cout << "Last Name: " << lookHere->data.getLastName() << endl;
         cout << "Address: " << lookHere->data.getAddress() << endl;
         cout << "Phone: " << lookHere->data.getPhone() << endl;
     }
+    else if (lookHere->next == NULL)
+    {
+        cout << "\t\tnext = NULL...could not find that person." << endl;
+    }
+//    else
+//    {
+//        cout << "Flight Number: " << FLIGHT_NO << endl;
+//        cout << "First Name: " << lookHere->data.getFirstName() << endl;
+//        cout << "Last Name: " << lookHere->data.getLastName() << endl;
+//        cout << "Address: " << lookHere->data.getAddress() << endl;
+//        cout << "Phone: " << lookHere->data.getPhone() << endl;
+//    }
 }
 
 //**************************************************************
