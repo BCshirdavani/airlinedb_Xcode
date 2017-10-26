@@ -43,11 +43,12 @@ public:
     node getFront2();
     Passenger getBack();
     virtual void insertNode(Passenger&);
-//    virtual void deleteNode(string, string);
+    virtual void deleteNode(string, string);
     virtual void searchList(string _first, string _last, int FLIGHT_NO);
+    void list();
     void destroyList();
 //    template <class U>
-    friend ostream& operator<<(ostream& os, LinkedList& list);
+//    friend ostream& operator<<(ostream& os, LinkedList& list);
     ~LinkedList();
 };
 
@@ -157,36 +158,75 @@ void LinkedList::insertNode(Passenger& item){       cout << "\t\tinserting: " <<
 //                                          define deleteNode()
 //                  simple delete requires full node as parameter
 //template <class T>
-//void LinkedList::deleteNode(string _first, string _last){
-//    if(head == NULL)
-//        cout << "list was already empty";
-//    else{
-//        if(/*head->data == item*/  ){
-//            node<T>* p = head;
-//            head = head->next;
-//            head->prev = NULL;              // added for double link
-//            delete p;
-//            count--;
-//            if(head==NULL){
-//                last = NULL;
-//            }
-//        }else{
-//            node* p = head;
-//            node* q = p->next;
-//            while(q!=NULL && q->data != item){
-//                p = q;
-//                q = q->next;
-//            }
-//            if(q!=NULL){
+void LinkedList::deleteNode(string _first, string _last){
+    if(head == NULL)
+        // list is empty
+        cout << "list was already empty";
+    else{
+        // item found at head
+        if(head->data.getFirstName() == _first && head->data.getLastName() == _last ){
+            node* p = head;
+            head = head->next;
+            head->prev = NULL;              // added for double link
+            delete p;
+            count--;
+            // is the list empty after deletion?
+            if(head==NULL){
+                last = NULL;
+            }
+        }
+        // item is not at head
+        else{
+            node* p = head;
+            node* q = p->next;
+            while( q!=NULL && ( q->data.getFirstName() != _first || q->data.getLastName() != _last ) ){
+                        cout << "\t\tdelete search is moving to look at next node..." << endl;
+                p = q;
+                q = q->next;
+            }
+            // must have found item or hit end of list
+            // q != null means loop exited because we found a match
+            if( q!=NULL ){
+                
 //                p->next = q->next;
 //                q->next->prev = p;         // added for double link
 //                count--;
 //                if(last == q) last = p;
 //                delete q;
-//            }
-//        }
-//    }
-//}
+//
+                // node found at end of list, where last points
+                if ( q == last ){
+                    p->next = NULL;
+                    last = p;
+                    delete q;
+                    count --;
+                }
+                // node just found somewhere in the middle of the list
+                else{
+                    p->next = q->next;
+                    q->next->prev = p;         // added for double link
+                    delete q;
+                    count--;
+                }
+            }
+            else if ( q == NULL ){
+                cout << "delete function could not find name..." << endl;
+            }
+        }
+    }
+}
+
+
+//**************************************************************
+//                                              define list()
+void LinkedList::list(){
+    node* here = head;
+    for (int i = 0; i < length(); i++){
+        cout << here->data.getFirstName() << " " << here->data.getLastName() << " [" << here->data.getAddress() << "] [" << here->data.getPhone() << "]" << endl;
+//        cout << here->data;
+        here = here->next;
+    }
+}
 
 //**************************************************************
 //                                          define searchList()
@@ -247,19 +287,19 @@ void LinkedList::searchList(string _first, string _last, int FLIGHT_NO){
 //**************************************************************
 //                                          define << operator
 //template <class T>
-ostream& operator<<(ostream& os, LinkedList& list){
-    node *p = list.head;
-    while(p!= NULL){
-        os << p->data.getFirstName() <<" "<<endl;
-        p = p->next;
-    }
-    
+//ostream& operator<<(ostream& os, LinkedList& list){
+//    node *p = list.head;
+//    while(p!= NULL){
+//        os << p->data.getFirstName() <<" "<<endl;
+//        p = p->next;
+//    }
+
 //    for (int i = 0; i < list.length(); i++){
 //        os << p->data.getFirstName() <<" "<<endl;
 //        p = p->next;
 //    }
-     return os;
-}
+//     return os;
+//}
 
 //**************************************************************
 //                                          define destroyList()

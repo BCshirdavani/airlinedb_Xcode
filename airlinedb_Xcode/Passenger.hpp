@@ -37,15 +37,15 @@ public:
     void setPhone(string);
     Passenger();                            // defult constructor
     Passenger(string, string, string, string);
-    template <class T>
-    friend ostream& operator<<(ostream& os, Passenger& person);
+//    template <class T>
+//    friend ostream& operator<<(ostream& os, Passenger& person);
 };
 
 //**************************************************************
 //                                          define << operator
-template <class T>
-ostream& operator<<(ostream& os, Passenger& p){
-    cout << p.getFirstName() << " " << p.getLastName() << " [" << p.getAddress() << "] [" << p.getPhone() << " ]";
-}
+//template <class T>
+// ostream& operator<<(ostream& os, Passenger& p){
+//    cout << p.getFirstName() << " " << p.getLastName() << " [" << p.getAddress() << "] [" << p.getPhone() << " ]";
+//}
 
 #endif /* Passenger_hpp */

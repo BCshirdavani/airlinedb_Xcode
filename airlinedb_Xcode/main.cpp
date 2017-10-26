@@ -9,6 +9,7 @@
 //                                      which then calls a Passenger function from a null pointer.
 
 #include "LinkedList.h"
+#include "OrderedLinkedList.h"
 #include "Passenger.hpp"
 #include <iostream>
 using namespace std;
@@ -73,11 +74,18 @@ int main() {
     cout << "searched list" << endl;
     
     
-
-
+    // testing LIST
+    cout << endl << endl << "about to print list" << endl;
+    LIST_1->list();
+    
+    // testing DELETE
+    cout << endl << endl << "about to delete steve" << endl;
+    LIST_1->deleteNode("jason", "dillon");
+    LIST_1->list();
 
     LIST_1->destroyList();
             cout << "destroyed list" << endl;
+    
     
     
     
