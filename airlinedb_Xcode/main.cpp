@@ -78,14 +78,42 @@ int main() {
     cout << endl << endl << "about to print list" << endl;
     LIST_1->list();
     
-    // testing DELETE
-    cout << endl << endl << "about to delete steve" << endl;
-    LIST_1->deleteNode("jason", "dillon");
-    LIST_1->list();
-
-    LIST_1->destroyList();
-            cout << "destroyed list" << endl;
+//    // testing DELETE
+//    cout << endl << endl << "about to delete steve" << endl;
+//    LIST_1->deleteNode("jason", "dillon");
+//    LIST_1->list();
+//
+//    LIST_1->destroyList();
+//            cout << "destroyed list" << endl;
     
+    
+    
+    // testing string comparison
+    string dillon = "dillon";
+    string smith = "smith";
+    cout << endl << "\tdillon < smith:\t" << ( dillon<smith )<< endl;
+    cout << endl << "\tdillon > smith:\t" << ( dillon>smith )<< endl;
+    
+    
+    cout << endl << endl << endl << "making ORDERED linked list now..." << endl;
+    OrderedLinkedList* oList_1;
+    oList_1 = new OrderedLinkedList();
+    cout << "list length:\t\t" << oList_1->length() << endl;
+    cout << "about to add:\t\t:" << P_1->getFirstName() << " " << P_1->getLastName() << endl;
+    oList_1->insertNode(*P_1);
+    cout << "list length:\t\t" << oList_1->length() << endl;
+    cout << "Front entry:\t\t" << oList_1->getFront().getFirstName() << endl;
+    oList_1->list();
+    cout << "about to add:\t\t:" << P_2->getFirstName() << " " << P_2->getLastName() << endl;
+    oList_1->insertNode(*P_2);
+    cout << "list length:\t\t" << oList_1->length() << endl;
+    cout << "Front entry:\t\t" << oList_1->getFront().getFirstName() << endl;
+    oList_1->list();
+    cout << "about to add:\t\t:" << P_3->getFirstName() << " " << P_3->getLastName() << endl;
+    oList_1->insertNode(*P_3);
+    cout << "list length:\t\t" << oList_1->length() << endl;
+    cout << "Front entry:\t\t" << oList_1->getFront().getFirstName() << endl;
+    oList_1->list();
     
     
     
